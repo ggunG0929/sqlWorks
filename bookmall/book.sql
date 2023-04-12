@@ -99,4 +99,3 @@ WHERE price = (SELECT MAX(price) FROM book);
 SELECT *
 FROM book
 ORDER BY price DESC, publisher;
-
