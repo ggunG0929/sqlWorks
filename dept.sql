@@ -30,6 +30,16 @@ SELECT * FROM dept
 WHERE deptno = '1002';
 
 --자료 정렬: ORDER BY 칼럼명(ASC/DESC)
+SELECT * FROM dept
+ORDER BY deptno DESC;
+
+--부서번호가 1002인 부서를 '회계팀'으로 변경하시오
+UPDATE dept
+SET deptname='회계팀'
+WHERE deptno='1002'; -- 콤마 안해도 되는 듯?
 
 --부서 테이블 삭제
-DROP TABLE dept;
+DELETE FROM dept
+WHERE deptno = '1003';
+
+--DROP TABLE dept;

@@ -20,7 +20,8 @@ INSERT INTO employee VALUES (100, '이강', 2500000, SYSDATE, '남자', '1000'); -- 
 INSERT INTO employee VALUES (101, '이산', 2000000, SYSDATE, '여자', '1001');
 INSERT INTO employee VALUES (102, '박달', 1500000, SYSDATE, '남자', '1002');
 INSERT INTO employee VALUES (103, '강하늘', 3500000, SYSDATE, '', '1003');
-INSERT INTO employee VALUES (104, '양우주', 4500000, SYSDATE, '여자', '1004');
+INSERT INTO employee VALUES (104, '양우주', 4500000, SYSDATE, '여자', '1000');
+INSERT INTO employee VALUES (105, '강남', 2600000, SYSDATE, '남자', '1000');
 
 -- 사원 자료 검색
 SELECT * FROM employee;
@@ -49,3 +50,15 @@ WHERE ename LIKE '이%'; -- '이'로 시작하는 경우
 -- 사원 총 인원수를 구하시오 -- 괄호 꼭 넣기
 SELECT COUNT(*) as 사원수
 FROM employee;
+
+-- 중복없이 부서번호를 검색하시오(DISTINCT 키워드)
+SELECT DISTINCT deptno 부서번호
+FROM employee;
+
+-- GROUP BY 절(소속 등 그룹화) 조건절 - HAVING 사용
+-- 부서별 급여 총액을 구하시오
+SELECT deptno 부서, SUM(sal) 급여총액, AVG(sal) 급여평균
+FROM employee
+GROUP BY deptno
+HAVING AVG(sal)>=3000000
+ORDER BY AVG(sal) DESC;
