@@ -61,9 +61,9 @@ WHERE ename = '서울시'; -- 사원번호로 찾는 것이 제일 좋음
 */
 
 -- 이름이 서울시인 사원 삭제
-DELETE FROM emp
-WHERE ename='서울시';
+--DELETE FROM emp
+--WHERE ename='서울시';
 
 COMMIT;
 
-ROLLBACK; -- commit전이면 복원(취소) 가능
+--ROLLBACK; -- commit전이면 복원(취소) 가능

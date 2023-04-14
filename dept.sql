@@ -39,7 +39,7 @@ SET deptname='회계팀'
 WHERE deptno='1002'; -- 콤마 안해도 되는 듯?
 
 --부서 테이블 삭제
-DELETE FROM dept
-WHERE deptno = '1003';
+--DELETE FROM dept
+--WHERE deptno = '1003';
 
 --DROP TABLE dept;
