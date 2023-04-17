@@ -72,6 +72,14 @@ WHERE publisher = '굿스포츠';
 --날짜 함수
 --20일 전의 날짜 출력
 SELECT SYSDATE - 20 FROM dual;
+--20일 후의 날짜 출력
+SELECT SYSDATE + 20 FROM dual;
+--4월 1일에서 10일 후(특정한 날: 문자형->날짜형 변경필요)
+SELECT TO_DATE('2023/4/1') +10 FROM dual;
+--입사일: 2022-1-1 퇴사일: 2023-1-31
+SELECT
+    ROUND(MONTHS_BETWEEN(TO_DATE('2023/1/31'),TO_DATE('2022-1-1')),0) 총개월수
+FROM dual;
 --3개월 후의 날짜 출력
 SELECT ADD_MONTHS(SYSDATE,3) 결과
 FROM dual;
@@ -138,3 +146,5 @@ FROM dual;
 SELECT SUBSTR(name,1,1), COUNT(*) 인원
 FROM customer
 GROUP BY SUBSTR(name,1,1);
+
+
