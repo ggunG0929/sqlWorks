@@ -2,9 +2,9 @@
 --테이블 이름: board / 칼럼: 글번호(숫자), 글제목, 작성자, 글내용, 등록일(날짜)
 
 CREATE TABLE board(
-    bno NUMBER(5) PRIMARY KEY,
-    title VARCHAR2(200) NOT NULL,
-    writer VARCHAR2(20) NOT NULL,
+    bno     NUMBER(5) PRIMARY KEY,
+    title   VARCHAR2(200) NOT NULL,
+    writer  VARCHAR2(20) NOT NULL,
     content VARCHAR2(2000) NOT NULL,
     regdate DATE DEFAULT SYSDATE
 );
@@ -39,8 +39,35 @@ VALUES(seq.NEXTVAL,'좋은 하루','긴하루','좋은 하루 되세요~');
 --테이블 삭제
 --DROP TABLE board;
 
-
+--게시글 검색
 SELECT * FROM board;
+
+SELECT * FROM board
+ORDER BY regdate DESC;
+
+--재귀 복사(자료 삽입)
+--INSERT INTO 테이블이름(칼럼) VALUES(X)(SELECT 칼럼 FROM 테이블이름)
+INSERT INTO board(bno, title, writer, content)
+(SELECT seq.nextval, title, writer, content FROM board);
+
+SELECT ROWNUM, bno, title, content
+FROM board
+WHERE ROWNUM >0 AND ROWNUM <=10;
+--WHERE ROWNUM >10 AND ROWNUM <=20; --ROWNUM은 1을 포함해야 함
+
+--페이지 처리
+SELECT *
+FROM
+    (SELECT ROWNUM rn, bno, title, content
+    FROM board)
+WHERE rn >10 AND rn <=20; --ROWNUM의 별칭을 사용하면 가능함
+
+--ROWID
+--데이터를 구분하는 유일한 값
+--ROWID를 통해서 데이터 파일, 어느 블럭에 저장되어있는지 알 수 있음
+SELECT ROWID, bno, title, content
+FROM board
+WHERE ROWID='AAAS1JAAHAAAAFrAAA'; 
 
 --작성자가 관리자인 게시글을 검색하시오
 SELECT * FROM board
