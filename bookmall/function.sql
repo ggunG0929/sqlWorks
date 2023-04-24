@@ -5,6 +5,11 @@ SELECT ABS(-10), ABS(10) FROM dual;
 --반올림 : ROUND(수, 자리수)
 SELECT ROUND(3.875, 2) FROM dual;
 
+--버림 : TRUNC(수, 자리수)
+SELECT TRUNC(3.875, 2) FROM dual;
+
+SELECT * FROM employee;
+
 --sal을 30일로 나눈 후 소수 자리수에 따라 반올림한 값 출력
 SELECT sal 급여,
        sal/30 일급,
@@ -21,10 +26,14 @@ SELECT sal 급여,
        TRUNC(sal/30,-1) 결과3
 FROM employee;
 
---고객별 평균 주문 금액을 백원 단위로 반올림한 값을 구하시오
-SELECT custid 고객번호, ROUND(AVG(saleprice),-2) 평균주문금액
+--전체조회
+SELECT SUM(saleprice) 총판매금액, ROUND(AVG(saleprice),-2) 평균주문금액
+FROM orders;
+
+--고객별 평균 주문 금액을 십원 단위에서 반올림한 값을 구하시오
+SELECT custid 고객번호, orderdate, ROUND(AVG(saleprice),-2) 평균주문금액
 FROM orders
-GROUP BY custid;
+GROUP BY custid, orderdate;
 
 SELECT custid 고객번호, COUNT(*) 주문수, SUM(saleprice) 총액
 FROM orders
@@ -78,7 +87,8 @@ SELECT SYSDATE + 20 FROM dual;
 SELECT TO_DATE('2023/4/1') +10 FROM dual;
 --입사일: 2022-1-1 퇴사일: 2023-1-31
 SELECT
-    ROUND(MONTHS_BETWEEN(TO_DATE('2023/1/31'),TO_DATE('2022-1-1')),0) 총개월수
+    ROUND(MONTHS_BETWEEN(TO_DATE('2023/1/31'),
+            TO_DATE('2022-1-1')),0) 총개월수
 FROM dual;
 --3개월 후의 날짜 출력
 SELECT ADD_MONTHS(SYSDATE,3) 결과
