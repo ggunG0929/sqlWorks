@@ -14,4 +14,6 @@ VALUES ('cloud123', 'm123456#', '장그래', '남');
 INSERT INTO member(memberid, passwd, name, gender)
 VALUES ('cloud345', 'm123456#', '오대리', '여');
 
+DELETE FROM member;
+
 SELECT * FROM member;
