@@ -26,14 +26,21 @@ CREATE SEQUENCE b_seq;
 --    START WITH 1
 --    MINVALUE 1
 --    MAXVALUE 9999
---    NO CYCLE
---    NO CACHE;
+--    NOCYCLE
+--    NOCACHE;
+
+-- 파일 업로드 칼럼 추가
+ALTER TABLE t_board ADD fileupload VARCHAR2(100);
 
 INSERT INTO t_member(memberid, passwd, name, gender) VALUES ('cloud', 'm12345', '김기용', '남');
 INSERT INTO t_board(bnum, title, content, memberid) VALUES (b_seq.NEXTVAL, '가입인사', '안녕하세요. 반갑습니다.', 'cloud');
 
 SELECT * FROM t_member;
 SELECT * FROM t_board;
+
+-- id 중복 체크
+SELECT DECODE(COUNT(*), 1, 'true', 'false') AS result
+FROM t_member WHERE memberid = 'cloud';
 
 -- 임의로 추가
 --ALTER SEQUENCE b_seq NOCACHE;
