@@ -21,13 +21,13 @@ CREATE TABLE t_board(
 );
 
 -- 자동순번 전체 코드(CACHE 기본값 20 - 사용안함)
-CREATE SEQUENCE b_seq;
---    INCREMENT BY 1
---    START WITH 1
---    MINVALUE 1
---    MAXVALUE 9999
---    NOCYCLE
---    NOCACHE;
+CREATE SEQUENCE b_seq
+    INCREMENT BY 1
+    START WITH 1
+    MINVALUE 1
+    MAXVALUE 9999
+    NOCYCLE
+    NOCACHE;
 
 -- 파일 업로드 칼럼 추가
 ALTER TABLE t_board ADD fileupload VARCHAR2(100);
@@ -41,6 +41,27 @@ SELECT * FROM t_board;
 -- id 중복 체크
 SELECT DECODE(COUNT(*), 1, 'true', 'false') AS result
 FROM t_member WHERE memberid = 'cloud';
+
+-- 페이지 처리
+SELECT ROWNUM, t_board.*
+FROM t_board
+WHERE ROWNUM >= 1 AND ROWNUM <= 10
+--WHERE ROWNUM >= 11 AND ROWNUM <= 20   -- rownum은 1이 꼭 포함되어야 하기 때문에 안됨. 별칭처리를 해야 함.
+ORDER BY bnum DESC;
+
+SELECT ROWNUM as RN, t_board.*
+FROM t_board
+WHERE RN >= 1 AND RN <= 10  -- WHERE절이 SELECT 보다 먼저 처리되기 때문에 별칭처리가 적용 안됨
+ORDER BY bnum DESC;
+
+-- 인라인뷰 - 중첩쿼리(서브쿼리)
+SELECT *
+FROM (SELECT ROWNUM RN, t_board.*
+FROM t_board ORDER BY bnum DESC)    -- 먼저 정렬하고 범위설정
+WHERE RN >= 11 AND RN <= 20;    -- 별칭처리 완
+
+-- 총 행의 수
+SELECT COUNT(*) FROM t_board;
 
 -- 임의로 추가
 --ALTER SEQUENCE b_seq NOCACHE;
