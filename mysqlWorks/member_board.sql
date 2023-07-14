@@ -43,6 +43,15 @@ insert into t_reply(bnum, rcontent, replyer) values(1, '내용에 대한 댓글�
 -- 댓글 검색
 select * from t_reply;
 
+-- 댓글 삭제
+delete from t_reply where rno=7;
+
+-- 특정 댓글 검색
+select * from t_reply where rno = 8;
+
+-- 댓글 수정
+update t_reply set rcontent='내용수정' where rno = 8; 
+
 -- 게시글 쓰기
 insert into t_board(title, content, memberid) values('가입인사', '안녕하세요. 가입했습니다.', 'today');
 insert into t_board(title, content, memberid) values('가입인사2', '안녕하세요. 가입했습니다.', 'today');
@@ -54,3 +63,5 @@ insert into t_board(title, content, memberid) values('가입인사5', '안녕하
 select * from t_member;
 select * from t_board;
 select * from t_board order by bnum desc limit 0, 10;	-- limit 시작행(맨 첫번째인 bnum), 게시글 수
+
+SELECT * FROM t_board ORDER BY bnum DESC limit 0,3;
