@@ -64,4 +64,4 @@ select * from t_member;
 select * from t_board;
 select * from t_board order by bnum desc limit 0, 10;	-- limit 시작행(맨 첫번째인 bnum), 게시글 수
 
-SELECT * FROM t_board ORDER BY bnum DESC limit 0,3;
+SELECT * FROM t_board ORDER BY bnum DESC limit 0, 3;
