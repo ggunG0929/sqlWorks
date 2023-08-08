@@ -1,6 +1,7 @@
 create table arts(
 	id	int auto_increment primary key,
     name	varchar(50),
+    pw		varchar(50),
     age 	int,
     height	int,
     weight	int,
@@ -16,3 +17,5 @@ create table arts(
 );
 
 select * from arts;
+
+drop table arts;
