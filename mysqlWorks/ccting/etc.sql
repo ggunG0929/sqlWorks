@@ -18,6 +18,8 @@ create table dist (
     seq int
 );
 
+select * from dist;
+
 create table review(
    id int auto_increment primary key,
     rtype varchar(20),
@@ -56,3 +58,5 @@ values
 ('min333', '박민정', '너꼴라스','010-2222-2222','park@gmail.com','서울시 강서구','2002-03-03','탈랜트'),
 ('min444', '최민정', '네꼴라스','010-3333-3333','cho@gmail.com','서울시 양천구','2003-04-04','보조출연'),
 ('min555', '여민정', '누꼴라스','010-4444-4444','ye@gmail.com','서울시 서초구','2004-05-05','아이돌');
+
+select * from member;
